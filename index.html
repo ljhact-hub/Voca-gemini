@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yonsei TOEIC Vocabulary Trainer</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="background-overlay"></div>
+
+    <div class="app-container">
+        <header class="glass-panel">
+            <h1 class="logo">YONSEI <span>UNIVERSITY</span></h1>
+            <p class="subtitle">연세의 이름으로 외운다.</p>
+            <h2 class="app-title">TOEIC Vocabulary Trainer</h2>
+        </header>
+
+        <section id="menu-view" class="view-section active glass-panel">
+            <div class="progress-container">
+                <h3>학습 현황</h3>
+                <p id="total-words-info">총 단어: 0개 | 오답: 0개</p>
+            </div>
+            <div class="menu-grid">
+                <button class="btn primary" onclick="app.changeView('list-view')">단어장 보기</button>
+                <button class="btn primary" onclick="app.startQuiz(false)">단어 퀴즈 풀기</button>
+                <button class="btn primary" onclick="app.startFlashcards()">플래시카드</button>
+                <button class="btn secondary" onclick="app.startQuiz(true)">오답 다시 풀기</button>
+            </div>
+        </section>
+
+        <section id="list-view" class="view-section glass-panel hidden">
+            <div class="view-header">
+                <h2>단어장</h2>
+                <button class="btn-small" onclick="app.changeView('menu-view')">돌아가기</button>
+            </div>
+            <input type="text" id="search-input" placeholder="영어 또는 뜻으로 검색..." onkeyup="app.searchWords()">
+            <div class="word-list" id="word-list-container">
+                </div>
+        </section>
+
+        <section id="quiz-view" class="view-section glass-panel hidden">
+            <div class="view-header">
+                <h2 id="quiz-title">단어 퀴즈</h2>
+                <button class="btn-small" onclick="app.changeView('menu-view')">종료</button>
+            </div>
+            <div class="progress-bar"><div id="quiz-progress" class="fill"></div></div>
+            <p id="quiz-counter">1 / 10</p>
+            <div class="quiz-question">
+                <h1 id="quiz-word">word</h1>
+            </div>
+            <div class="quiz-options" id="quiz-options-container">
+                </div>
+        </section>
+
+        <section id="result-view" class="view-section glass-panel hidden">
+            <h2>퀴즈 결과</h2>
+            <h1 id="result-score" class="score-text">0 / 0</h1>
+            <p id="result-message"></p>
+            <div class="menu-grid" style="margin-top: 20px;">
+                <button class="btn primary" onclick="app.changeView('menu-view')">메인으로</button>
+            </div>
+        </section>
+
+        <section id="flashcard-view" class="view-section glass-panel hidden">
+            <div class="view-header">
+                <h2>플래시카드</h2>
+                <button class="btn-small" onclick="app.changeView('menu-view')">돌아가기</button>
+            </div>
+            <p id="flashcard-counter" style="text-align: center; margin-bottom: 10px;">1 / 10</p>
+            <div class="flashcard-container" onclick="app.flipCard()">
+                <div id="flashcard-inner" class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <h1 id="flashcard-word">word</h1>
+                        <p class="hint">클릭하여 뜻 확인</p>
+                    </div>
+                    <div class="flashcard-back">
+                        <h1 id="flashcard-meaning">뜻</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="flashcard-controls">
+                <button class="btn primary" onclick="app.prevCard()">이전</button>
+                <button class="btn primary" onclick="app.nextCard()">다음</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
