@@ -1,0 +1,368 @@
+/* CSS 변수 설정: 연세대 블루 기반 */
+:root {
+    --yonsei-blue: #003876;
+    --yonsei-blue-light: #1A5293;
+    --yonsei-silver: #C0C0C0;
+    --text-dark: #333333;
+    --text-light: #F0F0F0;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --glass-shadow: rgba(0, 56, 118, 0.15);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--text-light);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* 배경 및 오버레이 설정 */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('./images/yonsei_bg.png');
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+}
+
+.background-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, rgba(0, 56, 118, 0.8) 0%, rgba(255, 255, 255, 0.6) 100%);
+    z-index: -1;
+}
+
+/* 앱 컨테이너 */
+.app-container {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 글래스모피즘 패널 공통 */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 8px 32px var(--glass-shadow);
+}
+
+/* 헤더 & 로고 */
+header {
+    text-align: center;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--yonsei-blue);
+    letter-spacing: 2px;
+}
+
+.logo span {
+    font-weight: 300;
+    color: var(--text-dark);
+}
+
+.subtitle {
+    font-size: 14px;
+    color: var(--yonsei-blue-light);
+    margin: 5px 0 10px;
+    font-style: italic;
+}
+
+.app-title {
+    font-size: 18px;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+/* 뷰 전환 관련 */
+.view-section {
+    display: none;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.view-section.active {
+    display: block;
+}
+
+.view-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--yonsei-blue);
+    padding-bottom: 10px;
+}
+
+/* 버튼 스타일 */
+.btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn.primary {
+    background-color: var(--yonsei-blue);
+    color: #fff;
+}
+
+.btn.primary:hover {
+    background-color: var(--yonsei-blue-light);
+    transform: translateY(-2px);
+}
+
+.btn.secondary {
+    background-color: var(--yonsei-silver);
+    color: var(--text-dark);
+}
+
+.btn.secondary:hover {
+    background-color: #A0A0A0;
+}
+
+.btn-small {
+    padding: 6px 12px;
+    background: transparent;
+    border: 1px solid var(--yonsei-blue);
+    color: var(--yonsei-blue);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-small:hover {
+    background: var(--yonsei-blue);
+    color: white;
+}
+
+/* 메인 메뉴 그리드 */
+.menu-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.progress-container {
+    background: rgba(255,255,255,0.5);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* 검색창 */
+#search-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--yonsei-silver);
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+}
+
+#search-input:focus {
+    border-color: var(--yonsei-blue);
+}
+
+/* 단어 리스트 */
+.word-list {
+    max-height: 400px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.word-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    background: white;
+    border-radius: 8px;
+    border-left: 4px solid var(--yonsei-blue);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.word-item strong {
+    color: var(--yonsei-blue);
+}
+
+/* 퀴즈 UI */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #E0E0E0;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.progress-bar .fill {
+    height: 100%;
+    background: var(--yonsei-blue);
+    width: 0%;
+    transition: width 0.3s;
+}
+
+#quiz-counter {
+    text-align: right;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.quiz-question {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.quiz-question h1 {
+    font-size: 32px;
+    color: var(--yonsei-blue);
+}
+
+.quiz-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.option-btn {
+    padding: 15px;
+    background: white;
+    border: 2px solid var(--yonsei-silver);
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+    text-align: left;
+}
+
+.option-btn:hover {
+    border-color: var(--yonsei-blue);
+    background: #f8fbff;
+}
+
+.option-btn.correct {
+    background: #d4edda;
+    border-color: #28a745;
+    color: #155724;
+}
+
+.option-btn.wrong {
+    background: #f8d7da;
+    border-color: #dc3545;
+    color: #721c24;
+}
+
+.score-text {
+    text-align: center;
+    font-size: 40px;
+    color: var(--yonsei-blue);
+    margin: 20px 0;
+}
+
+/* 플래시카드 UI (3D Flip) */
+.flashcard-container {
+    perspective: 1000px;
+    width: 100%;
+    height: 250px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.flashcard-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+.flashcard-inner.flipped {
+    transform: rotateY(180deg);
+}
+
+.flashcard-front, .flashcard-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border: 2px solid var(--yonsei-blue);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.flashcard-front h1, .flashcard-back h1 {
+    font-size: 36px;
+    color: var(--yonsei-blue);
+}
+
+.flashcard-back {
+    transform: rotateY(180deg);
+    background: var(--yonsei-blue);
+}
+
+.flashcard-back h1 {
+    color: white;
+}
+
+.flashcard-front .hint {
+    margin-top: 15px;
+    font-size: 12px;
+    color: #888;
+}
+
+.flashcard-controls {
+    display: flex;
+    gap: 10px;
+}
+
+/* 애니메이션 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 반응형 모바일 */
+@media (min-width: 768px) {
+    .menu-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .quiz-options {
+        grid-template-columns: 1fr 1fr;
+    }
+}
