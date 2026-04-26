@@ -10,16 +10,21 @@
     <div class="background-overlay"></div>
 
     <div class="app-container">
-        <header class="glass-panel">
+        <header class="glass-panel text-center">
             <h1 class="logo">YONSEI <span>UNIVERSITY</span></h1>
             <p class="subtitle">연세의 이름으로 외운다.</p>
             <h2 class="app-title">TOEIC Vocabulary Trainer</h2>
         </header>
 
         <section id="menu-view" class="view-section active glass-panel">
-            <div class="progress-container">
+            <div class="stats-box">
                 <h3>학습 현황</h3>
-                <p id="total-words-info">총 단어: 0개 | 오답: 0개</p>
+                <p>총 단어 수: <span id="total-words">0</span>개</p>
+                <p>오답 노트: <span id="incorrect-words">0</span>개</p>
+                <div class="progress-container mt-10">
+                    <div id="total-progress" class="fill"></div>
+                </div>
+                <p class="progress-text">전체 진행률: <span id="progress-percent">0</span>%</p>
             </div>
             <div class="menu-grid">
                 <button class="btn primary" onclick="app.changeView('list-view')">단어장 보기</button>
@@ -29,45 +34,43 @@
             </div>
         </section>
 
-        <section id="list-view" class="view-section glass-panel hidden">
+        <section id="list-view" class="view-section glass-panel">
             <div class="view-header">
                 <h2>단어장</h2>
-                <button class="btn-small" onclick="app.changeView('menu-view')">돌아가기</button>
+                <button class="btn-small" onclick="app.changeView('menu-view')">메뉴로</button>
             </div>
-            <input type="text" id="search-input" placeholder="영어 또는 뜻으로 검색..." onkeyup="app.searchWords()">
-            <div class="word-list" id="word-list-container">
-                </div>
+            <input type="text" id="search-input" placeholder="영어/한국어 검색..." onkeyup="app.searchWords()">
+            <div class="word-list" id="word-list-container"></div>
         </section>
 
-        <section id="quiz-view" class="view-section glass-panel hidden">
+        <section id="quiz-view" class="view-section glass-panel">
             <div class="view-header">
                 <h2 id="quiz-title">단어 퀴즈</h2>
                 <button class="btn-small" onclick="app.changeView('menu-view')">종료</button>
             </div>
-            <div class="progress-bar"><div id="quiz-progress" class="fill"></div></div>
-            <p id="quiz-counter">1 / 10</p>
+            <div class="progress-container mb-10">
+                <div id="quiz-progress" class="fill"></div>
+            </div>
+            <p id="quiz-counter" class="text-right text-muted">1 / 10</p>
             <div class="quiz-question">
                 <h1 id="quiz-word">word</h1>
             </div>
-            <div class="quiz-options" id="quiz-options-container">
-                </div>
+            <div class="quiz-options" id="quiz-options-container"></div>
         </section>
 
-        <section id="result-view" class="view-section glass-panel hidden">
+        <section id="result-view" class="view-section glass-panel text-center">
             <h2>퀴즈 결과</h2>
             <h1 id="result-score" class="score-text">0 / 0</h1>
-            <p id="result-message"></p>
-            <div class="menu-grid" style="margin-top: 20px;">
-                <button class="btn primary" onclick="app.changeView('menu-view')">메인으로</button>
-            </div>
+            <p id="result-message" class="mb-20"></p>
+            <button class="btn primary" onclick="app.changeView('menu-view')">메뉴로 돌아가기</button>
         </section>
 
-        <section id="flashcard-view" class="view-section glass-panel hidden">
+        <section id="flashcard-view" class="view-section glass-panel">
             <div class="view-header">
                 <h2>플래시카드</h2>
-                <button class="btn-small" onclick="app.changeView('menu-view')">돌아가기</button>
+                <button class="btn-small" onclick="app.changeView('menu-view')">메뉴로</button>
             </div>
-            <p id="flashcard-counter" style="text-align: center; margin-bottom: 10px;">1 / 10</p>
+            <p id="flashcard-counter" class="text-center mb-10 text-muted">1 / 10</p>
             <div class="flashcard-container" onclick="app.flipCard()">
                 <div id="flashcard-inner" class="flashcard-inner">
                     <div class="flashcard-front">
